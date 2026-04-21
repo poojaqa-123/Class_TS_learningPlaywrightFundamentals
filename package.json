@@ -2,7 +2,12 @@
   "name": "class_ts_learningplaywrightfundamentals",
   "version": "1.0.0",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "test": "playwright test",
+    "test:chromium": "playwright test --project=chromium",
+    "test:headed": "playwright test --headed",
+    "show-report": "playwright show-report"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
