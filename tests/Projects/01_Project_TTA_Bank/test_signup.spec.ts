@@ -1,9 +1,13 @@
 import { test, expect } from '@playwright/test'
+import * as allure from 'allure-js-commons'
 
-test('Sign up in TTA bank website', async ({ page }) => {
+test('Verify that the account balance accurately reflects the remaining funds after a successful transfer on the TTA Bank website.', async ({ page }) => {
+
+    allure.epic("Sign In Epic");
+    allure.description("Validates that the post-transfer balance on the dashboard matches the expected calculation after completing the registration and fund transfer process.");
+    allure.feature("Sign In")
 
     await page.goto("https://tta-bank-digital-973242068062.us-west1.run.app/");
-    // await page.getByText("Sign Up").click();
     await page.getByRole('button', { name: 'Sign Up' }).click();
     await page.getByPlaceholder("John Doe").fill("Pooja");
     await page.getByPlaceholder("you@example.com").fill("poojakt123@gmail.com");
@@ -18,8 +22,6 @@ test('Sign up in TTA bank website', async ({ page }) => {
     await page.getByRole('button', { name : 'Transfer Funds'}).click();
     await page.getByPlaceholder("0.00").fill("5000");
     
-    // const inputLocator = page.locator('input[type="number"]');
-    // const rent_value = await inputLocator.inputValue();
     const rentStr = await page.locator('input[type="number"]').inputValue() ?? '0';
     const rentValue = parseFloat(rentStr.replace(/[^0-9.-]+/g, ""));
 
